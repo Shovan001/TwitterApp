@@ -5,6 +5,7 @@ import v2Router from "./v2/v2Routes.js";
 const router = express.Router();    
 
 router.use('/v1', v1Router);
+
 router.use('/v2', v2Router);
 
 
