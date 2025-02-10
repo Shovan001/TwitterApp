@@ -3,6 +3,7 @@ import {createUser as createUserRepository,
     } from '../repositories/userRepository.js';
 
 import bcrypt from 'bcrypt';
+import { generateToken } from '../utils/jwtUtils.js';
 
 export const registerUser = async ({userName, email, password}) => {
     const existingUser = await findUserByEmailRepository(email);
@@ -38,7 +39,10 @@ export const loginUser = async ({email, password}) => {
         };
     }
 
+    const token  = generateToken(user);
+
     return {
+        token,
         user: {
             id: user.id,
             userName: user.userName,

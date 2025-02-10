@@ -21,13 +21,14 @@ export const signupUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
     try {
-        const {user} = await loginUserService({
+        const { token, user } = await loginUserService({
             userName: req.body.userName,
             password: req.body.password,
             email: req.body.email
         });
 
         return successResponse({
+            token,
             user: {
                 id:user.id,
                 email: user.email,
