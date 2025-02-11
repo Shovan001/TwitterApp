@@ -27,8 +27,14 @@ export const loginUser = async (req, res) => {
             email: req.body.email
         });
 
+        res.cookie("token", token, {
+            httpOnly: true,
+            sameSite: "strict",
+            maxAge:36000
+        });
+
         return successResponse({
-            token,
+            
             user: {
                 id:user.id,
                 email: user.email,
